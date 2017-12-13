@@ -27,7 +27,7 @@ const api = `http://gateway.marvel.com/v1/public/characters?ts=${timestamp}&apik
 
 let schema = buildSchema(`
   type Query {
-    characters: ${},
+    characters: String,
     character: String
   }
 `);
