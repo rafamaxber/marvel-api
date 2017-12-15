@@ -1,3 +1,7 @@
 language: node_js
 node_js:
-  - process.env.NODE_TYPE
+  - "7"
+deploy:
+  provider: heroku
+  api_key: HEROKU_APP_ID
+  app: HEROKU_APP_NAME
