@@ -1,2 +1,3 @@
-# marvel-api
-A simple example to use graphql with marvel API - WIP
+# Marvel API - GraphQL
+
+This project is for implement marvel api with graphQl..
