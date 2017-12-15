@@ -45,6 +45,4 @@ class Resources {
   }
 }
 
-module.exports = {
-  Resources
-};
+module.exports = Resources;
