@@ -17,14 +17,14 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "express-graphql": "^0.6.11",
-    "graphql": "^0.11.7"
+    "graphql": "^0.11.7",
+    "nodemon": "^1.12.5"
   },
   "devDependencies": {
     "eslint": "^4.13.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "jest-cli": "^21.2.1",
-    "nodemon": "^1.12.5"
   },
   "jest": {
     "testEnvironment": "node",
