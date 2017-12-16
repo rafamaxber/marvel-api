@@ -8,6 +8,13 @@ const {
 } = require('./Resources');
 
 describe('Resources', () => {
+  const mock = new MockAdapter(axios);
+
+  afterEach(() => {
+    mock.reset();
+    mock.restore();
+  });
+
   const parameters = {
     BASE_URL: 'http://url_base.com.br/',
     TIMESTAMP: '1513382563229', // valid timestamp
@@ -44,15 +51,15 @@ describe('Resources', () => {
   });
 
   describe('httpGetAllCharacters', () => {
+
     test('Should be a function', () => {
       expect(typeof httpGetAllCharacters).toBe('function');
     });
     test('Should return data when httpGetAllCharacters is called', () => {
-      const mock = new MockAdapter(axios);
       const data = { response: true };
-      mock.onGet('http://url_base.com.br/').reply(200, data);
+      mock.onGet('http://gateway.marvel.com/v1/public/').reply(200, data);
 
-      httpGetAllCharacters().then((response) => {
+      httpGetAllCharacters(parameters).then((response) => {
         expect(response).toBe(data);
       });
     });

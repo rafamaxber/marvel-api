@@ -5,6 +5,11 @@ exports[`Resources generateApiUrl Should throw message equal to: Is necerrary se
 exports[`Resources routes Should match with snapshot 1`] = `
 Object {
   "characters": "characters",
+  "comics": "comics",
+  "creators": "creators",
+  "events": "events",
+  "series": "series",
+  "stories": "stories",
 }
 `;
 

@@ -3,6 +3,11 @@ const axios = require('axios');
 
 const routes = {
   characters: 'characters',
+  comics: 'comics',
+  creators: 'creators',
+  events: 'events',
+  series: 'series',
+  stories: 'stories',
 };
 
 const urlApiParameters = {
@@ -23,11 +28,9 @@ function generateApiUrl({
   return `${BASE_URL}${PATH}?ts=${TIMESTAMP}&apikey=${PUBLIC_KEY}&hash=${hash}`;
 }
 
-function httpGetAllCharacters() {
-  const parameters = Object.assign({}, urlApiParameters);
-  parameters.TIMESTAMP = Date.now();
-  parameters.PATH = routes.characters;
-  return axios.get(generateApiUrl({ ...parameters }));
+function httpGetAllCharacters(parameters) {
+  return axios.get(generateApiUrl({ ...parameters, PATH: 'characters' }))
+    .catch(error => error);
 }
 
 module.exports = {
