@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Resources generateApiUrl Should throw message equal to: Is necerrary send all parameters! 1`] = `"Cannot destructure property \`BASE_URL\` of 'undefined' or 'null'."`;
+exports[`Resources generateApiUrl Should throw message equal to: Is necerrary send all parameters! 1`] = `"Is necerrary send all parameters!"`;
 
 exports[`Resources routes Should match with snapshot 1`] = `
 Object {
@@ -10,10 +10,10 @@ Object {
 
 exports[`Resources urlApiParameters Should match with snapshot 1`] = `
 Object {
-  "BASE_URL": "http://teste.com.br",
+  "BASE_URL": undefined,
   "PATH": "",
-  "PRIVATE_KEY": "888888888888",
-  "PUBLIC_KEY": "99999999999",
+  "PRIVATE_KEY": undefined,
+  "PUBLIC_KEY": undefined,
   "TIMESTAMP": "",
 }
 `;

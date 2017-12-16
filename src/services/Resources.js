@@ -6,16 +6,16 @@ const routes = {
 };
 
 const urlApiParameters = {
-  BASE_URL: (process.env.NODE_ENV === 'test' ? 'http://teste.com.br' : process.env.URL_API),
-  PUBLIC_KEY: (process.env.NODE_ENV === 'test' ? '99999999999' : process.env.PUBLIC_KEY),
-  PRIVATE_KEY: (process.env.NODE_ENV === 'test' ? '888888888888' : process.env.PRIVATE_KEY),
+  BASE_URL: process.env.URL_API,
+  PUBLIC_KEY: process.env.PUBLIC_KEY,
+  PRIVATE_KEY: process.env.PRIVATE_KEY,
   TIMESTAMP: '',
   PATH: '',
 };
 
 function generateApiUrl({
   BASE_URL, TIMESTAMP, PATH, PUBLIC_KEY, PRIVATE_KEY,
-}) {
+} = {}) {
   if (!BASE_URL || !TIMESTAMP || !PATH || !PUBLIC_KEY || !PRIVATE_KEY) {
     throw Error('Is necerrary send all parameters!');
   }
