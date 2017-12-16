@@ -71,7 +71,7 @@ app.use('/graphiql', graphqlHTTP({
 }));
 
 const server = app.listen(port, () => {
-  console.log(`GraphQL API server running at localhost: ${port}`);
+  console.log(`GraphQL API server running at http://localhost:${port}`);
 });
 
 module.exports = server;

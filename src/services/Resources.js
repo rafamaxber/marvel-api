@@ -1,10 +1,23 @@
-const axios = require('axios');
 const generateMD5Hash = require('../helpers/MD5');
+/*
+const axios = require('axios');
 
 const routes = {
   characters: 'characters',
 };
+*/
 
+function generateApiUrl({
+  BASE_URL, TIMESTAMP, PATH, PUBLIC_KEY, PRIVATE_KEY,
+}) {
+  if (!BASE_URL || !TIMESTAMP || !PATH || !PUBLIC_KEY || !PRIVATE_KEY) {
+    throw Error('Is necerrary send all parameters!');
+  }
+  const hash = generateMD5Hash(TIMESTAMP, PRIVATE_KEY, PUBLIC_KEY);
+  return `${BASE_URL}${PATH}?ts=${TIMESTAMP}&apikey=${PUBLIC_KEY}&hash=${hash}`;
+}
+
+/*
 const timestamp = Date.now();
 const privateKey = process.env.PRIVATE_KEY;
 const publicKey = process.env.PUBLIC_KEY;
@@ -44,5 +57,8 @@ class Resources {
       .catch(error => Error(error));
   }
 }
+*/
 
-module.exports = Resources;
+module.exports = {
+  generateApiUrl,
+};
