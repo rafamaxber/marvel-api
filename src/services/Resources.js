@@ -1,41 +1,60 @@
+/*
+
 const generateMD5Hash = require('../helpers/MD5');
-const axios = require('axios');
-
-const routes = {
-  characters: 'characters',
-  comics: 'comics',
-  creators: 'creators',
-  events: 'events',
-  series: 'series',
-  stories: 'stories',
-};
-
-const urlApiParameters = {
-  BASE_URL: process.env.URL_API,
-  PUBLIC_KEY: process.env.PUBLIC_KEY,
-  PRIVATE_KEY: process.env.PRIVATE_KEY,
-  TIMESTAMP: '',
-  PATH: '',
-};
-
-function generateApiUrl({
-  BASE_URL, TIMESTAMP, PATH, PUBLIC_KEY, PRIVATE_KEY,
-} = {}) {
-  if (!BASE_URL || !TIMESTAMP || !PATH || !PUBLIC_KEY || !PRIVATE_KEY) {
-    throw Error('Is necerrary send all parameters!');
+class ClientHttpInstance {
+  constructor({
+    httpClient, baseURL,
+  }) {
+    this.httpClient = httpClient;
+    this.baseURL = baseURL;
   }
-  const hash = generateMD5Hash(TIMESTAMP, PRIVATE_KEY, PUBLIC_KEY);
-  return `${BASE_URL}${PATH}?ts=${TIMESTAMP}&apikey=${PUBLIC_KEY}&hash=${hash}`;
+
+  getClientInstance() {
+    return this.httpClient.create({
+      baseURL: this.baseURL,
+    });
+  }
 }
 
-function httpGetAllCharacters(parameters) {
-  return axios.get(generateApiUrl({ ...parameters, PATH: 'characters' }))
-    .catch(error => error);
+class MarvelApi {
+  constructor({
+    clientHttpInstance, publicKey, privateKey,
+  }) {
+    this.httpInstance = clientHttpInstance;
+    this.publicKey = publicKey;
+    this.privateKey = privateKey;
+  }
+
+  allCharacters() {
+    return this.httpInstance.get('/characters', this.getParameters());
+  }
+  getParameters() {
+    const TIMESTAMP = Date.now();
+
+    return {
+      ts: TIMESTAMP,
+      apikey: this.publicKey,
+      hash: generateMD5Hash(TIMESTAMP, this.privateKey, this.publicKey),
+    };
+  }
 }
+
+const val = '';
+
+const clientHttpInstance = new ClientHttpInstance({
+  httpClient: val,
+  baseURL: val,
+}).getClientInstance();
+
+const marvelApi = new MarvelApi({
+  clientHttpInstance,
+  publicKey: val,
+  privateKey: val,
+});
 
 module.exports = {
-  generateApiUrl,
-  httpGetAllCharacters,
-  routes,
-  urlApiParameters,
+  ClientHttpInstance,
+  MarvelApi,
 };
+
+*/

@@ -30,6 +30,10 @@
   },
   "jest": {
     "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "./dist"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 100,
