@@ -12,8 +12,7 @@ class MarvelApi {
     this.privateKey = privateKey;
   }
 
-  getParameter(value) {
-    const timestamp = value || Date.now();
+  getParameter(timestamp = Date.now()) {
     const parameters = timestamp + this.publicKey + this.privateKey;
     const hash = generateMD5Hash(parameters);
     return {
@@ -21,6 +20,10 @@ class MarvelApi {
       hash,
       ts: timestamp,
     };
+  }
+
+  fetchCharacters() {
+    return this.clientHttpInstance.get('/characters', this.getParameter());
   }
 }
 
