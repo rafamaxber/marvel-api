@@ -24,16 +24,16 @@ describe('MarvelApi', () => {
   describe('getParameters', () => {
     const marvelApi = new MarvelApi(marvelParameters);
     test('Should is a function', () => {
-      expect(typeof marvelApi.getParameter).toBe('function');
+      expect(typeof marvelApi.getParameters).toBe('function');
     });
 
     test('Should return an object', () => {
-      expect(typeof marvelApi.getParameter()).toBe('object');
+      expect(typeof marvelApi.getParameters()).toBe('object');
     });
 
     test('Should return a object like that {ts: 1513633813937, apiKey: "99999", hash: "1181cfec701e6ebffb90317c5214b1e9"}', () => {
       const timestamp = 1513633813937;
-      expect(marvelApi.getParameter(timestamp)).toEqual({ ts: timestamp, apiKey: '99999', hash: '1181cfec701e6ebffb90317c5214b1e9' });
+      expect(marvelApi.getParameters(timestamp)).toEqual({ ts: timestamp, apiKey: '99999', hash: '1181cfec701e6ebffb90317c5214b1e9' });
     });
   });
 

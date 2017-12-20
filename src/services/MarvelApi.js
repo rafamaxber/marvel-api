@@ -12,7 +12,7 @@ class MarvelApi {
     this.privateKey = privateKey;
   }
 
-  getParameter(timestamp = Date.now()) {
+  getParameters(timestamp = Date.now()) {
     const parameters = timestamp + this.publicKey + this.privateKey;
     const hash = generateMD5Hash(parameters);
     return {
@@ -23,7 +23,7 @@ class MarvelApi {
   }
 
   fetchCharacters() {
-    return this.clientHttpInstance.get('/characters', this.getParameter());
+    return this.clientHttpInstance.get('/characters', this.getParameters());
   }
 }
 
