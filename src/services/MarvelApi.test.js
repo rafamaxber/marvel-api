@@ -61,7 +61,7 @@ describe('MarvelApi', () => {
     
     test('Should return a reject promise', () => {
       const mockHttp = {
-        get(path) {
+        get() {
           return new Promise((resolve, rejects) => rejects({ data: false }));
         },
       };
