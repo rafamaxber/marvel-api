@@ -10,8 +10,8 @@ describe('ClientHttpInstance', () => {
       expect(() => new ClientHttpInstance()).toThrowError();
     });
 
-    // test('Should throw error if some parameter not informed', () => {
-    //   expect(() => new ClientHttpInstance({})).toThrowError();
-    // });
+    test('Should throw error if some parameter not informed', () => {
+      expect(() => new ClientHttpInstance({})).toThrowError();
+    });
   });
 });
