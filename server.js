@@ -9,19 +9,23 @@ const {
 } = require('graphql');
 const graphqlHTTP = require('express-graphql');
 
-const crypto = require('crypto');
 const axios = require('axios');
+const MarvelApi = require('./src/services/MarvelApi');
 
-console.log('================');
-const timestamp = Date.now();
-const privateKey = '147882a8ecfb00e8d1e9d488a9fab40d6bd256f6';
-const publicKey = '0d6cfd363cc74d7f35a76e5cb7eedefb';
-const data = timestamp + privateKey + publicKey;
-const hash = crypto.createHash('md5').update(data).digest('hex');
-
-const api = `http://gateway.marvel.com/v1/public/characters?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
-
+const app = express();
 const port = process.env.PORT || 4000;
+const baseURL = process.env.URL_API;
+const clientHttpInstance = axios.create({
+  baseURL,
+});
+const publicKey = process.env.PUBLIC_KEY;
+const privateKey = process.env.PRIVATE_KEY;
+
+const marvelApi = new MarvelApi({
+  clientHttpInstance,
+  publicKey,
+  privateKey,
+});
 
 const CharactersType = new GraphQLObjectType({
   name: 'Characters',
@@ -41,25 +45,23 @@ const CharactersType = new GraphQLObjectType({
     },
   }),
 });
-
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
   fields: () => ({
     allCharacters: {
       type: new GraphQLList(CharactersType),
       resolve() {
-        return axios.get(api)
+        return marvelApi.fetchCharacters()
           .then(response => response.data.data.results);
       },
     },
   }),
 });
 
-const app = express();
-
 app.get('/json', (req, res) =>
-  axios.get(api)
-    .then(response => res.status(200).json(response.data)));
+  marvelApi.fetchCharacters()
+    .then(response => res.status(200).json(response.data))
+    .catch(error => res.status(402).json({ error })));
 
 const schema = new GraphQLSchema({
   query: RootQuery,

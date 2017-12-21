@@ -13,17 +13,21 @@ class MarvelApi {
   }
 
   getParameters(timestamp = Date.now()) {
-    const parameters = timestamp + this.publicKey + this.privateKey;
+    const parameters = String(timestamp) + String(this.privateKey) + String(this.publicKey);
     const hash = generateMD5Hash(parameters);
     return {
-      apiKey: this.publicKey,
+      ts: String(timestamp),
+      apikey: String(this.publicKey),
       hash,
-      ts: timestamp,
     };
   }
 
   fetchCharacters() {
-    return this.clientHttpInstance.get('/characters', this.getParameters());
+    return this.clientHttpInstance.get('/characters', { params: this.getParameters() })
+      .then(response => response)
+      .catch((error) => {
+        throw new Error(error);
+      });
   }
 }
 

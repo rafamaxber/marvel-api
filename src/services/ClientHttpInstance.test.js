@@ -1,9 +1,13 @@
 const ClientHttpInstance = require('./ClientHttpInstance');
 
 describe('ClientHttpInstance', () => {
+  const clientHttpInstanceMock = {
+    httpClient: 'ttt', 
+    baseURL: 'tt',
+  };
   describe('Instance', () => {
     test('Should is instanciable', () => {
-      expect(new ClientHttpInstance()).toBeInstanceOf(ClientHttpInstance);
+      expect(new ClientHttpInstance(clientHttpInstanceMock)).toBeInstanceOf(ClientHttpInstance);
     });
 
     test('Should throw error if parameter not informed', () => {

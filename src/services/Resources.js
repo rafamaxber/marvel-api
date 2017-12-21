@@ -9,7 +9,7 @@ class ClientHttpInstance {
     this.baseURL = baseURL;
   }
 
-  getClientInstance() {
+  create() {
     return this.httpClient.create({
       baseURL: this.baseURL,
     });
