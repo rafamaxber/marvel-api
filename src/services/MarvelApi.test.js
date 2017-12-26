@@ -31,9 +31,9 @@ describe('MarvelApi', () => {
       expect(typeof marvelApi.getParameters()).toBe('object');
     });
 
-    test('Should return a object like that {ts: 1513633813937, apiKey: "99999", hash: "1181cfec701e6ebffb90317c5214b1e9"}', () => {
-      const timestamp = 1513633813937;
-      expect(marvelApi.getParameters(timestamp)).toEqual({ ts: timestamp, apiKey: '99999', hash: '1181cfec701e6ebffb90317c5214b1e9' });
+    test('Should return a object like that {ts: "1513633813937", apikey: "99999", hash: "918ad2e377c29a1a5872e39ab3f5f3d7"}', () => {
+      const timestamp = '1513633813937';
+      expect(marvelApi.getParameters(timestamp)).toEqual({ ts: timestamp, apikey: '99999', hash: '918ad2e377c29a1a5872e39ab3f5f3d7' });
     });
   });
 
@@ -62,7 +62,7 @@ describe('MarvelApi', () => {
     test('Should return a reject promise', () => {
       const mockHttp = {
         get() {
-          return new Promise((resolve, rejects) => rejects({ data: false }));
+          return new Promise((resolve, rejects) => rejects());
         },
       };
       const marvelParametersInside = {
@@ -71,7 +71,7 @@ describe('MarvelApi', () => {
         privateKey: '88888',
       };
       const marvelApiInside = new MarvelApi(marvelParametersInside);
-      expect(marvelApiInside.fetchCharacters()).rejects.toEqual({ data: false });
+      expect(marvelApiInside.fetchCharacters().catch).toThrowError();
     });
   });
 
