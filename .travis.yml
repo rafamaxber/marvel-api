@@ -2,23 +2,27 @@ language: node_js
 node_js:
 - '8'
 branches:
-  only: 
-    - master
+  only:
+  - master
 env:
   global:
-    - CC_TEST_REPORTER_ID=370136a07880d7bfc0536173e2674d334176123a5111abfe25ff0646b4ea005d
+  - CC_TEST_REPORTER_ID=370136a07880d7bfc0536173e2674d334176123a5111abfe25ff0646b4ea005d
+  - secure: N36I06aRwQt/4ipjEVr3tqIHSMxyoI8S14LIaqOg08vOWGvOxgpxoJLEMJveegrRLmAkfiUCMyUsM6jzdqjr/i/dcdlq3OVt6rMOVmOP1sMVfqXOwkOdE+TyNtzH9FcnP/4kJ5rJo05wPxDxeqYEYCNRuRCFXjVDGGfqocBBmGGweNkWJOU4XBC0D1H0Azucb0iMA2F2t9BwFdvabiV4yk1b5TL1ZygF1aGrYWx0useJGi1nXQ5xSjVN2+QW3ljmSEOlI+Fbpb2i6rS1MNxBaVt4h4vRqGO4ut5Lj65sWdCPQztBC3gugyMrfSJGFTiz9PO3oHneKTHcyqQO/k3muoAdrRsjBu1HzapoOa8EdWIgcYduRjOQIpSEdDhuRapMD5RNr7f3OKYLNryw5NluWQix4NU5/G5u3Sci9SjnXH1w90Ks9/yS61YezFLdBB0bcIOKYvGMbDqMFiqQKwuTUfW/fmj1iS9iizz3zzisAow2fiuzWu6XtreGo7qxtxdommC3LZjxsdoz24AoRq6812t0cszyLEgSgvtNp0SVtM7U+Xehg3Vugon2WHMqZRYzuUtvMYMQNfqcQuXMtNHUndfwbMJkDTSmr6y5cZmn1KsxsSoP6TTxXgdZqxeWtYIscTxm8LdbfDBIsXbw5AoEsEA+lhUUjj6HmZRtejWiNVE=
+  - secure: a627Hm5hOOZMo16hKwzV2G0OedpAcTtzntdZPcS05915k+magLOZfGNwCrLRN7C5C5Uy7nZ4D38zOpenZKmUj5FKKbh9pZoDAygV48Jfgt9y4hwPf9yqcHgi0T6/KtMDaGDO/X3df7b4WYFNZTTxGPbvyBnnLZ1kqV18f/aQKBbIg/OWRa/dCTIY1pB3sCVqUDCu7GxI2t3wdD/H5ZVWW59DcdHuIPtV9zaiAPb2CUaBL1acVBa0YIRePuNMqzIhsMHMcbCb3DMmcpog4T2rB38oQ99poIHqz2Us4gsetix1DZw9owf3A6vFEqE1C84QlN9/tfTSWjtZvHVYBDNL1Msnp7JEcwIm+9kAKRWGk5QIPvCDLIl7nC/q1j+wfmviD8pPB7VVTuPP0Bn+kjd9AYXj47c3h0ctlBVoqfXBVR24PWhrbSyR7m9/7hZBUcMZkwe3EZjB2KGkD8wkKpzPNI+NaEMeLBJpqtNWOWzazkEqdDmgyQdZP3uJ5BcDoIgzwvhcOa4Jge4f9FXK9FN1jsDYgFnQKEozAK+TKPFS9AYjZOeuJdUj4RjLrjb3wlDQuVKIoC6Sw39tQNfpMG7oBeESo71KirL7MSp7yibasp3/jJlKCa3Yh5DQsY+fx0LRe8F9zJa8yDMAbHUpzlhdluWg6ywTDmNlRNl36vEaqZw=
+  - secure: NcTzcgapTMiSMkQzMK4E3LZKJ6boXKBTF8zfPOO1zgo7cx9dQCMQxuStflWHQ0TEgOsGWdJO1hwl9N69maMUoAOC/jqZVwobc0qBaXrGmN3Koq8FlJJwik2YvgNYlhFJFD5Ck7d6yG7bpJ8I3vPvEdEdcyr9PvpMX0Ac1IXQFvTcqxMfffaVNaVWRfTmw3sTDfGBFTTZUcRKH/Fr/UwbJVIXDQXpfZaM6dEZJr5UM0SmeQNQQYJqopNIXTzfskV8JjjkrDIHH6ZJp+lC1skTPjHojZ0bE709EmzEOvzoWl6+coQ49bNyzQG79bEz3lcU4WIzaCgydY78RqorE/93C7fuOhVeLB02FcONOxRYMKUXrZIvEMzmVl4Lgq1R4HNGZ8tAW2NSyeYLwFFNzBPFP8NnDytt5T70v68wBF/zGKtqTkEzUrybLC9kpbZnN0zT1qMo3Zy9bX4o2Dstu/7xO6C63yieIT/wxvwE1u/0IXCNaVE2qfyps3lNa7ddQbGkVpdLTF6JXJWQys4B/ME/urkaeaBr5TfaT2gb6jLhV/mXo5u96WSLkij8cU5fvyixyYjy/K3OADGQa34h9kSf2wY8hIJgsx4lGgA1m23vhrTTEd7wWniEcO4ARzLabIeOSlZVL/fZUZQz2q5c4AeA/aomd+4yKixbNrDOqGUnBmA=
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 script:
-  - npm run test:coverage
+- npm run test:coverage
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 deploy:
   provider: heroku
-  api_key: $HEROKU_APP_ID
-  app: $HEROKU_APP_NAME
+  api_key: "$HEROKU_APP_ID"
+  app: "$HEROKU_APP_NAME"
 cache:
   directories:
   - node_modules
