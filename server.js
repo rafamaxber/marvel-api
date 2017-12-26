@@ -1,9 +1,10 @@
 // example.js
 require('dotenv').load({ silent: true });
 const express = require('express');
+const CharactersType = require('./src/schemas/Characters');
+
 const {
   GraphQLObjectType,
-  GraphQLString,
   GraphQLList,
   GraphQLSchema,
 } = require('graphql');
@@ -27,24 +28,6 @@ const marvelApi = new MarvelApi({
   privateKey,
 });
 
-const CharactersType = new GraphQLObjectType({
-  name: 'Characters',
-  description: 'All characters 0 a 20',
-  fields: () => ({
-    id: {
-      type: GraphQLString,
-      resolve: character => character.id,
-    },
-    name: {
-      type: GraphQLString,
-      resolve: character => character.name,
-    },
-    thumb: {
-      type: GraphQLString,
-      resolve: character => `${character.thumbnail.path}.${character.thumbnail.extension}`,
-    },
-  }),
-});
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
   fields: () => ({
