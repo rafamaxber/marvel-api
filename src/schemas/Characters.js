@@ -2,7 +2,7 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLList,
-  GraphQLSchema
+  GraphQLSchema,
 } = require('graphql');
 
 const CharactersType = new GraphQLObjectType({
@@ -11,17 +11,17 @@ const CharactersType = new GraphQLObjectType({
   fields: () => ({
     id: {
       type: GraphQLString,
-      resolve: character => character.id
+      resolve: character => character.id,
     },
     name: {
       type: GraphQLString,
-      resolve: character => character.name
+      resolve: character => character.name,
     },
     thumb: {
       type: GraphQLString,
-      resolve: character => `${character.thumbnail.path}.${character.thumbnail.extension}`
+      resolve: character => `${character.thumbnail.path}.${character.thumbnail.extension}`,
     },
-  })
+  }),
 });
 
 const RootQuery = new GraphQLObjectType({
@@ -41,4 +41,4 @@ const RootQuery = new GraphQLObjectType({
 
 module.exports = new GraphQLSchema({
   query: RootQuery,
-})
+});
