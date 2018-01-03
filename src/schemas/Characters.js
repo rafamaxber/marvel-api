@@ -1,8 +1,6 @@
 const {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLList,
-  GraphQLSchema,
 } = require('graphql');
 
 const CharactersType = new GraphQLObjectType({
@@ -24,21 +22,4 @@ const CharactersType = new GraphQLObjectType({
   }),
 });
 
-const RootQuery = new GraphQLObjectType({
-  name: 'RootQuery',
-  fields: () => ({
-    allCharacters: {
-      type: new GraphQLList(CharactersType),
-      resolve(root) {
-        return axios.get(api)
-          .then(response => {
-            return response.data.data.results;
-          });
-      }
-    }
-  })
-});
-
-module.exports = new GraphQLSchema({
-  query: RootQuery,
-});
+module.exports = CharactersType;

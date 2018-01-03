@@ -8,7 +8,9 @@
     "dev": "./node_modules/.bin/nodemon server.js",
     "test": "jest",
     "test:tdd": "jest --coverage --watchAll",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "precommit": "npm test",
+    "prepush": "npm test"
   },
   "keywords": [],
   "author": "Rafael Bernardo <rafamaxber@gmail.com>",
@@ -21,10 +23,10 @@
     "graphql": "^0.11.7"
   },
   "devDependencies": {
-    "axios-mock-adapter": "^1.10.0",
     "eslint": "^4.13.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
+    "husky": "^0.14.3",
     "jest-cli": "^21.2.1",
     "nodemon": "^1.12.5"
   },

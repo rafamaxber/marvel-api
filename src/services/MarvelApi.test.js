@@ -58,7 +58,7 @@ describe('MarvelApi', () => {
       const marvelApiInside = new MarvelApi(marvelParametersInside);
       expect(marvelApiInside.fetchCharacters()).resolves.toEqual({ data: true });
     });
-    
+
     test('Should return a reject promise', () => {
       const mockHttp = {
         get() {
@@ -74,5 +74,4 @@ describe('MarvelApi', () => {
       expect(marvelApiInside.fetchCharacters().catch).toThrowError();
     });
   });
-
 });
