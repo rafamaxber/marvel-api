@@ -8,8 +8,7 @@ env:
   global:
   - CC_TEST_REPORTER_ID=370136a07880d7bfc0536173e2674d334176123a5111abfe25ff0646b4ea005d
   before_script:
-    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
-    > ./cc-test-reporter
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
     - chmod +x ./cc-test-reporter
     - "./cc-test-reporter before-build"
 script:
