@@ -24,4 +24,21 @@ const CharactersType = new GraphQLObjectType({
   }),
 });
 
-module.exports = CharactersType;
+const RootQuery = new GraphQLObjectType({
+  name: 'RootQuery',
+  fields: () => ({
+    allCharacters: {
+      type: new GraphQLList(CharactersType),
+      resolve(root) {
+        return axios.get(api)
+          .then(response => {
+            return response.data.data.results;
+          });
+      }
+    }
+  })
+});
+
+module.exports = new GraphQLSchema({
+  query: RootQuery,
+});
