@@ -1,0 +1,13 @@
+type Query {
+  comic(id: Int!): Comics
+  comics(topic: String): [Comics]
+}
+
+type Comics {
+  id: Int
+  title: String
+  author: String
+  description: String
+  topic: String
+  url: String
+}
