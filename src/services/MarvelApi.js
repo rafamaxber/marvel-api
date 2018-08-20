@@ -1,4 +1,4 @@
-const generateMD5Hash = require('../helpers/MD5')
+import generateMD5Hash from '../helpers/MD5'
 
 class Marvel {
   constructor({ clientHttpInstance, publicKey, privateKey }) {
@@ -27,9 +27,12 @@ class MarvelApi extends Marvel {
     this.nameApp = 'Marvel'
   }
 
-  fetchCharacters() {
+  fetchCharacters(filters = {}) {
+    const params = Object.assign({}, this.getParameters(), filters)
     return this.clientHttpInstance
-      .get('/characters', { params: this.getParameters() })
+      .get('/characters', {
+        params
+      })
       .then(response => response)
       .catch(error => {
         throw new Error(error)
@@ -37,4 +40,4 @@ class MarvelApi extends Marvel {
   }
 }
 
-module.exports = MarvelApi
+export default MarvelApi
