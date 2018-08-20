@@ -1,13 +1,10 @@
 type Query {
-  course(id: Int!): Course
-  courses(topic: String): [Course]
+  character(id: Int!): Character
+  characters( name: String, id: Int): [Character]
 }
 
-type Course {
+type Character {
   id: Int
-  title: String
-  author: String
+  name: String
   description: String
-  topic: String
-  url: String
 }

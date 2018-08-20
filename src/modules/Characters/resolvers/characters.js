@@ -1,49 +1,36 @@
-var coursesData = [
-  {
-    id: 1,
-    title: 'The Complete Node.js Developer Course',
-    author: 'Andrew Mead, Rob Percival',
-    description:
-      'Learn Node.js by building real-world applications with Node, Express, MongoDB, Mocha, and more!',
-    topic: 'Node.js',
-    url: 'https://codingthesmartway.com/courses/nodejs/'
-  },
-  {
-    id: 2,
-    title: 'Node.js, Express & MongoDB Dev to Deployment',
-    author: 'Brad Traversy',
-    description:
-      'Learn by example building & deploying real-world Node.js applications from absolute scratch',
-    topic: 'Node.js',
-    url: 'https://codingthesmartway.com/courses/nodejs-express-mongodb/'
-  },
-  {
-    id: 3,
-    title: 'JavaScript: Understanding The Weird Parts',
-    author: 'Anthony Alicea',
-    description:
-      'An advanced JavaScript course for everyone! Scope, closures, prototypes, this, build your own framework, and more.',
-    topic: 'JavaScript',
-    url: 'https://codingthesmartway.com/courses/understand-javascript/'
-  }
-]
-var getCourse = function(args) {
-  var id = args.id
-  return coursesData.filter(course => {
-    return course.id == id
-  })[0]
+import axios from 'axios'
+import { BASE_URL, PRIVATE_KEY, PUBLIC_KEY } from '../../../config/vars'
+import MarvelApi from '../../../services/MarvelApi'
+
+const clientHttpInstance = axios.create({
+  baseURL: BASE_URL
+})
+
+const marvelApi = new MarvelApi({
+  clientHttpInstance,
+  publicKey: PUBLIC_KEY,
+  privateKey: PRIVATE_KEY
+})
+
+const getCharacter = async args => {
+  const characters = await marvelApi
+    .fetchCharacters(args)
+    .then(data => data.data.data.results)
+
+  return characters.filter(character => character.id === id)[0]
 }
-var getCourses = function(args) {
-  if (args.topic) {
-    var topic = args.topic
-    return coursesData.filter(course => course.topic === topic)
-  } else {
-    return coursesData
-  }
+
+const getCharacters = async args => {
+  const characters = await marvelApi
+    .fetchCharacters(args)
+    .then(data => data.data.data.results)
+
+  return characters
 }
-var root = {
-  course: getCourse,
-  courses: getCourses
+
+const root = {
+  character: getCharacter,
+  characters: getCharacters
 }
 
 export default root
