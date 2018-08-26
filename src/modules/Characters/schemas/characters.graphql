@@ -7,4 +7,5 @@ type Character {
   id: Int
   name: String
   description: String
+  thumbnail: String
 }

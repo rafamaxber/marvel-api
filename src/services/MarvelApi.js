@@ -1,4 +1,7 @@
 import generateMD5Hash from '../helpers/MD5'
+import cache from 'memory-cache'
+
+const mcache = new cache.Cache()
 
 class Marvel {
   constructor({ clientHttpInstance, publicKey, privateKey }) {
@@ -28,12 +31,23 @@ class MarvelApi extends Marvel {
   }
 
   fetchCharacters(filters = {}) {
+    const PATH = '/characters'
+    const CACHE_KEY = `__marvel__${PATH}${JSON.stringify(filters)}`
+    const cachedValue = mcache.get(CACHE_KEY)
+
+    if (cachedValue) {
+      return Promise.resolve(cachedValue)
+    }
+
     const params = Object.assign({}, this.getParameters(), filters)
     return this.clientHttpInstance
-      .get('/characters', {
+      .get(PATH, {
         params
       })
-      .then(response => response)
+      .then(response => {
+        mcache.put(CACHE_KEY, response, 900000)
+        return response
+      })
       .catch(error => {
         throw new Error(error)
       })
