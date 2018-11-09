@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && cd app && node index.js",
+    "start": "npm run build && node app/index.js",
     "dev": "nodemon --exec npm run babel-node -- src/index.js",
     "build": "npm run rimraf && babel src -d app",
     "babel-node": "babel-node --presets=env",
@@ -55,10 +55,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
       }
     }
   }

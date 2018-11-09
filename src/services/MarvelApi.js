@@ -59,10 +59,10 @@ class MarvelApi extends Marvel {
   fetch(path, filters) {
     const PATH = path
     const CACHE_KEY = `__marvel__${PATH}${JSON.stringify(filters)}`
-    const cachedValue = mcache.get(CACHE_KEY)
+    const cacheValue = mcache.get(CACHE_KEY)
 
-    if (cachedValue) {
-      return Promise.resolve(cachedValue)
+    if (cacheValue) {
+      return Promise.resolve(cacheValue)
     }
 
     const params = Object.assign({}, this.getParameters(), filters)
