@@ -1,16 +1,23 @@
-import axios from 'axios'
-import { BASE_URL, PRIVATE_KEY, PUBLIC_KEY } from '../../../config/vars'
-import MarvelApi from '../../../services/MarvelApi'
+import { translateThumbnail, marvelApi } from '../../Shared'
+import { mergeComicsInCharacters } from '../../Comics/resolvers/comics'
 
-const clientHttpInstance = axios.create({
-  baseURL: BASE_URL
-})
-
-const marvelApi = new MarvelApi({
-  clientHttpInstance,
-  publicKey: PUBLIC_KEY,
-  privateKey: PRIVATE_KEY
-})
+const translateCharacter = data => {
+  return data.map(item => {
+    return {
+      id: item.id,
+      name: item.name,
+      description: item.description,
+      thumbnail: translateThumbnail(item.thumbnail),
+      modified: item.modified,
+      resourceURI: item.resourceURI,
+      urls: item.urls,
+      comics: [],
+      stories: item.stories.items,
+      events: item.events.items,
+      series: item.series.items
+    }
+  })
+}
 
 const getCharacter = async args => {
   const characters = await marvelApi
@@ -23,7 +30,8 @@ const getCharacter = async args => {
 const getCharacters = async args => {
   const characters = await marvelApi
     .fetchCharacters(args)
-    .then(data => data.data.data.results)
+    .then(data => translateCharacter(data.results))
+    .then(data => mergeComicsInCharacters(data, args))
 
   return characters
 }

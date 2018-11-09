@@ -30,8 +30,34 @@ class MarvelApi extends Marvel {
     this.nameApp = 'Marvel'
   }
 
-  fetchCharacters(filters = {}) {
-    const PATH = '/characters'
+  templateResponse(response) {
+    const results = response.data.data.results
+    const offset = response.data.data.offset
+    const limit = response.data.data.limit
+    const total = response.data.data.total
+    const count = response.data.data.count
+    const status = response.status
+    const statusText = response.statusText
+    const headers = response.headers
+    const config = response.config
+    const request = response.request
+
+    return {
+      results,
+      offset,
+      limit,
+      total,
+      count,
+      status,
+      statusText,
+      headers,
+      config,
+      request
+    }
+  }
+
+  fetch(path, filters) {
+    const PATH = path
     const CACHE_KEY = `__marvel__${PATH}${JSON.stringify(filters)}`
     const cachedValue = mcache.get(CACHE_KEY)
 
@@ -45,12 +71,23 @@ class MarvelApi extends Marvel {
         params
       })
       .then(response => {
-        mcache.put(CACHE_KEY, response, 900000)
-        return response
+        const templateResponse = this.templateResponse(response)
+        mcache.put(CACHE_KEY, templateResponse, 900000)
+        return templateResponse
       })
       .catch(error => {
         throw new Error(error)
       })
+  }
+
+  fetchCharacters(filters = {}) {
+    const PATH = '/characters'
+    return this.fetch(PATH, filters)
+  }
+
+  fetchCharactersComics(id, filters = {}) {
+    const PATH = `/characters/${id}/comics`
+    return this.fetch(PATH, filters)
   }
 }
 

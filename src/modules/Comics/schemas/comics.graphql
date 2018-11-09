@@ -10,4 +10,5 @@ type Comics {
   description: String
   topic: String
   url: String
+  thumbnail: String
 }

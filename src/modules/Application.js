@@ -11,14 +11,14 @@ const schema = buildSchema(
     all: true
   })
 )
-const resolvers = mergeResolvers(resolversArray)
+const rootValue = mergeResolvers(resolversArray)
 
 const Application = app => {
   app.use(
     '/graphiql',
     graphqlHTTP({
       schema,
-      rootValue: resolvers,
+      rootValue,
       graphiql: true
     })
   )

@@ -1,6 +1,6 @@
 require('dotenv').load({ silent: true })
 import express from 'express'
-import { HOST, PORT } from './vars'
+import { HOST, PORT } from './constants'
 
 const app = express()
 
