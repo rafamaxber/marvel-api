@@ -4,62 +4,29 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node app/index.js",
-    "dev": "nodemon --exec npm run babel-node -- src/index.js",
-    "build": "npm run rimraf && babel src -d app",
-    "babel-node": "babel-node --presets=env",
-    "rimraf": "rimraf app",
-    "test": "jest",
-    "test:tdd": "jest --coverage --watchAll",
-    "test:coverage": "jest --coverage",
-    "precommit": "lint-staged",
-    "prepush": "npm test"
-  },
-  "lint-staged": {
-    "*.{js,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "dev": "nodemon src/server.ts",
+    "build": ""
   },
   "keywords": [],
   "author": "Rafael Bernardo <rafamaxber@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.17.1",
-    "dotenv": "^4.0.0",
-    "express": "^4.16.2",
-    "express-graphql": "^0.6.11",
-    "graphql": "^0.11.7",
-    "graphql-import": "^0.6.0",
-    "memory-cache": "^0.2.0",
     "merge-graphql-schemas": "^1.5.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-jest": "^23.0.1",
-    "babel-preset-env": "^1.7.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.7.0",
-    "husky": "^0.14.3",
-    "jest-cli": "^21.2.1",
-    "lint-staged": "^7.2.0",
-    "nodemon": "^1.12.5",
-    "prettier": "^1.13.5"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "./dist"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 50,
-        "functions": 50,
-        "lines": 50,
-        "statements": 50
-      }
-    }
+    "@typescript-eslint/eslint-plugin": "^1.5.0",
+    "@typescript-eslint/parser": "^1.5.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.18.10",
+    "prettier": "^1.16.4",
+    "sucrase": "^3.10.1",
+    "typescript": "^3.4.1"
   }
 }
