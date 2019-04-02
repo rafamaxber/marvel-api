@@ -1,15 +1,14 @@
 import axios from 'axios'
-import { BASE_URL, PRIVATE_KEY, PUBLIC_KEY } from '../../config/constants'
 import MarvelApi from '../../services/MarvelApi'
 
 const clientHttpInstance = axios.create({
-  baseURL: BASE_URL
+  baseURL: process.env.URL_API
 })
 
 export const marvelApi = new MarvelApi({
   clientHttpInstance,
-  publicKey: PUBLIC_KEY,
-  privateKey: PRIVATE_KEY
+  publicKey: process.env.PUBLIC_KEY,
+  privateKey: process.env.PRIVATE_KEY
 })
 
 export const translateThumbnail = data => {

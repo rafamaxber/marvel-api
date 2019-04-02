@@ -1,10 +1,7 @@
 import generateMD5Hash from '../helpers/MD5'
-import cache from 'memory-cache'
-
-const mcache = new cache.Cache()
 
 class Marvel {
-  constructor({ clientHttpInstance, publicKey, privateKey }) {
+  constructor ({ clientHttpInstance, publicKey, privateKey }) {
     if (!clientHttpInstance || !publicKey || !privateKey) {
       throw new Error('Is necessary send all parameters!')
     }
@@ -13,7 +10,7 @@ class Marvel {
     this.privateKey = privateKey
   }
 
-  getParameters(timestamp = Date.now()) {
+  getParameters (timestamp = Date.now()) {
     const parameters = `${timestamp}${this.privateKey}${this.publicKey}`
     const hash = generateMD5Hash(parameters)
     return {
@@ -25,12 +22,12 @@ class Marvel {
 }
 
 class MarvelApi extends Marvel {
-  constructor(marvelConfig) {
+  constructor (marvelConfig) {
     super(marvelConfig)
     this.nameApp = 'Marvel'
   }
 
-  templateResponse(response) {
+  templateResponse (response) {
     const results = response.data.data.results
     const offset = response.data.data.offset
     const limit = response.data.data.limit
@@ -56,14 +53,8 @@ class MarvelApi extends Marvel {
     }
   }
 
-  fetch(path, filters) {
+  fetch (path, filters) {
     const PATH = path
-    const CACHE_KEY = `__marvel__${PATH}${JSON.stringify(filters)}`
-    const cacheValue = mcache.get(CACHE_KEY)
-
-    if (cacheValue) {
-      return Promise.resolve(cacheValue)
-    }
 
     const params = Object.assign({}, this.getParameters(), filters)
     return this.clientHttpInstance
@@ -72,7 +63,6 @@ class MarvelApi extends Marvel {
       })
       .then(response => {
         const templateResponse = this.templateResponse(response)
-        mcache.put(CACHE_KEY, templateResponse, 900000)
         return templateResponse
       })
       .catch(error => {
@@ -80,12 +70,12 @@ class MarvelApi extends Marvel {
       })
   }
 
-  fetchCharacters(filters = {}) {
+  fetchCharacters (filters = {}) {
     const PATH = '/characters'
     return this.fetch(PATH, filters)
   }
 
-  fetchCharactersComics(id, filters = {}) {
+  fetchCharactersComics (id, filters = {}) {
     const PATH = `/characters/${id}/comics`
     return this.fetch(PATH, filters)
   }

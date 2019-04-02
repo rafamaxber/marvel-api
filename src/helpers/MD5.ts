@@ -1,6 +1,6 @@
 import crypto from 'crypto'
 
-function generateMD5Hash(value) {
+function generateMD5Hash (value) {
   if (!value) throw Error('Is necerrary send the parameter!')
   return crypto
     .createHash('md5')

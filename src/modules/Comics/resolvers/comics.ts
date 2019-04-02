@@ -12,6 +12,14 @@ export const translateComics = data => {
   }))
 }
 
+export const getCharactersComics = async (id, args) => {
+  const charactersComics = await marvelApi
+    .fetchCharactersComics(id, args)
+    .then(data => translateComics(data.results))
+
+  return charactersComics
+}
+
 export const mergeComicsInCharacters = async (characters, args) => {
   return characters.map(async character => {
     try {
@@ -24,10 +32,9 @@ export const mergeComicsInCharacters = async (characters, args) => {
   })
 }
 
-export const getCharactersComics = async (id, args) => {
-  const charactersComics = await marvelApi
-    .fetchCharactersComics(id, args)
-    .then(data => translateComics(data.results))
-
-  return charactersComics
+export default {
+  Query: {
+    comics: () => ({}),
+    comic: () => ({})
+  }
 }

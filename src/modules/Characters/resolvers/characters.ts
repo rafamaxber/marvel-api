@@ -36,9 +36,9 @@ const getCharacters = async args => {
   return characters
 }
 
-const root = {
-  character: getCharacter,
-  characters: getCharacters
+export default {
+  Query: {
+    character: getCharacter,
+    characters: getCharacters
+  }
 }
-
-export default root
