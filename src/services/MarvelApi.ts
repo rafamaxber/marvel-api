@@ -1,4 +1,4 @@
-import generateMD5Hash from '../helpers/MD5'
+import generateMD5Hash from '@marvelQl/helpers/MD5'
 
 class Marvel {
   constructor ({ clientHttpInstance, publicKey, privateKey }) {

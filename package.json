@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "build": "",
-    "test": "jest"
+    "build": "tsc",
+    "prod": "npm run build && node app/index.js",
+    "test": "jest --no-cache"
   },
   "keywords": [],
   "author": "Rafael Bernardo <rafamaxber@gmail.com>",
@@ -36,5 +37,19 @@
     "sucrase": "^3.10.1",
     "ts-jest": "^24.0.1",
     "typescript": "^3.4.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "\\.test\\.ts",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }
