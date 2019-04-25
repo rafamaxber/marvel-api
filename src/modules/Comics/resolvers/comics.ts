@@ -1,4 +1,6 @@
-import { translateThumbnail, marvelApi } from '../../Shared'
+import { marvelApi } from '../../injector'
+
+import { translateThumbnail } from '../../Shared'
 
 export const translateComics = data => {
   return data.map(item => ({

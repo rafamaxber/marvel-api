@@ -1,19 +1,12 @@
-import axios from 'axios'
-import MarvelApi from '../../services/MarvelApi'
+interface Thumbnail {
+  path: string
+  extension: string
+}
 
-const clientHttpInstance = axios.create({
-  baseURL: process.env.URL_API
-})
-
-export const marvelApi = new MarvelApi({
-  clientHttpInstance,
-  publicKey: process.env.PUBLIC_KEY,
-  privateKey: process.env.PRIVATE_KEY
-})
-
-export const translateThumbnail = data => {
+export function translateThumbnail (data: Thumbnail): string {
   if (!data || !data.path) {
     return ''
   }
+
   return `${data.path}.${data.extension}`
 }

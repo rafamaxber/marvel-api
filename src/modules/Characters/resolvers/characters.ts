@@ -1,4 +1,6 @@
-import { translateThumbnail, marvelApi } from '../../Shared'
+import { marvelApi } from '../../injector'
+
+import { translateThumbnail } from '../../Shared'
 import { mergeComicsInCharacters } from '../../Comics/resolvers/comics'
 
 const translateCharacter = data => {
