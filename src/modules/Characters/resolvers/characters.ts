@@ -3,7 +3,7 @@ import { marvelApi } from '../../injector'
 import { translateThumbnail } from '../../Shared'
 import { mergeComicsInCharacters } from '../../Comics/resolvers/comics'
 
-const translateCharacter = data => {
+function translateCharacter (data) {
   return data.map(item => {
     return {
       id: item.id,
