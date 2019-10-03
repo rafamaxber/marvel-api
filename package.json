@@ -35,7 +35,7 @@
     "graphql-import": "^0.6.0",
     "memory-cache": "^0.2.0",
     "merge-graphql-schemas": "^1.5.2",
-    "snyk": "^1.161.1"
+    "snyk": "^1.230.5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
