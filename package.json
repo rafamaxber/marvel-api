@@ -34,7 +34,7 @@
     "graphql": "^0.11.7",
     "graphql-import": "^0.6.0",
     "memory-cache": "^0.2.0",
-    "merge-graphql-schemas": "^1.5.2",
+    "merge-graphql-schemas": "^1.6.0",
     "snyk": "^1.230.5"
   },
   "devDependencies": {
